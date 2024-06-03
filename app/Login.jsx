@@ -1,22 +1,33 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { TextInput , Button} from 'react-native-paper';
+import { StyleSheet, View, Text } from 'react-native';
 
 const Login = () => {
+  const [Email, setEmail] = React.useState({Email:''});
+  const [Password, setPassword] = React.useState({Password:''})
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Login</Text>
+        <Text style={styles.title}>Login💗</Text>
         <Text style={styles.subtitle}>Si ya tienes una cuenta, inicia sesión en nuestra app. ¿Qué esperas?</Text>
         <TextInput
-          placeholder="Ingrese su Email!"
+          label="Email"
+          value={Email}
+          onChangeText={e => setEmail(e)}
           style={styles.input}
+    
         />
         <TextInput
-          placeholder="Ingrese su Contraseña!"
-          style={styles.input}
-          secureTextEntry
+           label="Password"
+           value={Password}
+           onChangeText={e => setPassword(e)}
+           style={styles.input}
         />
-        <StatusBar style="auto" />
+          <Button icon="heart" mode="contained" onPress={() => console.log('Pressed')} style={styles.Button}>
+               Iniciar Seccion
+         </Button>
+         
+        <StatusBar style="auto"/>
       </View>
     );
 };
@@ -41,12 +52,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   input: {
-    width: '80%',
+    width: '70%',
     padding: 10,
     marginVertical: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+  },
+  Button:{
+    width:'50%',
+    backgroundColor: '#ff8cd6'
   }
 });
 

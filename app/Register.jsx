@@ -1,21 +1,49 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import React ,{useState} from "react";
+import { TextInput , Button} from 'react-native-paper';
+import { StyleSheet, View, Text} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Login = () => {
+
+
+const Register = ({navigation}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleRegister = async() => {
+    
+    try {
+      // Guardar los datos en AsyncStorage
+      await AsyncStorage.setItem('userData', JSON.stringify({ email, password }));
+
+      // Redirigir al usuario a otra pantalla, por ejemplo, la pantalla de inicio de sesión.
+      navigation.navigate("Login");
+    } catch (error) {
+      console.error('Error al guardar los datos:', error);
+    }
+  };
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Register</Text>
+        <Text style={styles.title}>Register💗</Text>
         <Text style={styles.subtitle}>Si todavía no tienes una cuenta, ¿qué esperas? ¡Regístrate ahora!</Text>
         <TextInput
-          placeholder="Ingrese su Email!"
-          style={styles.input}
+          label="Email"
+          value={email}
+          onChangeText={text => setEmail(text)}
+          style={styles.input}  
+    
         />
         <TextInput
-          placeholder="Ingrese su Contraseña!"
-          style={styles.input}
-          secureTextEntry
+           label="Password"
+           value={password}
+           onChangeText={text => setPassword(text)}
+           style={styles.input}
+           secureTextEntry
         />
+          <Button icon="heart" mode="contained" onPress={handleRegister} style={styles.Button}>
+               Registrar
+         </Button>
+         
         <StatusBar style="auto" />
       </View>
     );
@@ -41,13 +69,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   input: {
-    width: '80%',
+    width: '70%',
     padding: 10,
     marginVertical: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+  },
+  Button:{
+    width:'50%',
+    backgroundColor: '#ff8cd6'
   }
 });
 
-export default Login;
+export default Register;

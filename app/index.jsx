@@ -17,6 +17,9 @@ const Index = () => {
           <Text style={styles.buttonText}>Register</Text>
         </Link>
       </View>
+      
+    
+
     </View>
   );
 };
