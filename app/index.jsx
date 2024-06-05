@@ -10,6 +10,7 @@ const Index = () => {
       <Text style={styles.title}>Studio las Bratz</Text>
       <StatusBar style="auto" />
       <View style={styles.buttonsContainer}>
+        ~
         <Link href="/Login" style={[styles.button, styles.signInButton]}>
           <Text style={styles.buttonText}>Sign In</Text>
         </Link>
