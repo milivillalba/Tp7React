@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React ,{useState} from "react";
 import { TextInput , Button} from 'react-native-paper';
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text,Alert} from 'react-native';
 import { useRouter, Stack } from "expo-router";
 
 
@@ -34,11 +34,13 @@ const Register = () => {
      //validar el nombre de usuario
      if(!ValidarUser(Username)){
       //si el nombre de usuario no es valido se mostrar este mensaje
+       Alert.alert('El nombre de usuario debe contener letras y números, por favor recuérdelo.')
        setErrorUser('El nombre de usuario que ingreso es invalido')
        //se marva el inicio como falso para que no ingrese
        InicioValido= false
      }else{
       //si el nombre que ingreso es valido se elimina el mensaje de error que se agrego anteriormente
+      Alert.alert('Recuerde que su contraseña no debe tener menos de 5 caracteres.Debe contener al menos una letra mayúscula, una letra minúscula y un símbolo.😊')
       setErrorUser('')
      }
 
@@ -61,11 +63,11 @@ const Register = () => {
     return (
       <>
        {/* Define la pantalla del Stack con opciones de título */}
-         <Stack.Screen options={{title:'Registro'}}/>
+         <Stack.Screen options={{title:'Regi'}}/>
 
         <View style={styles.container}>
-          <Text style={styles.title}>Register💗</Text>
-          <Text style={styles.subtitle}>Si todavía no tienes una cuenta, ¿qué esperas? ¡Regístrate ahora!</Text>
+          <Text style={styles.title}>Inicia Sesión💗</Text>
+          <Text style={styles.subtitle}>Registra tus datos he ingresa ahora!</Text>
           {/*Input para Usuario*/}
           <TextInput
             label="Username"
