@@ -1,31 +1,51 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 
 const TaskList = ({ tasks, deleteTask }) => {
+  console.log("Tareas recibidas en TaskList:", tasks); // Agrega un console.log para verificar las tareas recibidas
+
   return (
-    <View>
-      {tasks.map(task => (
-        <View key={task.id} style={styles.taskItem}>
-          <Text>{task.text}</Text>
-          <TouchableOpacity onPress={() => deleteTask(task.id)}>
-            <Text style={styles.deleteButton}>Delete</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
+    <View style={styles.listContainer}>
+      {/* Utilizando FlatList para renderizar las tareas */}
+      <FlatList
+        data={tasks}
+        renderItem={({ item }) => (
+          <View key={item.id} style={styles.taskItem}>
+            <Text style={styles.taskText}>Nombre: {item.name}</Text>
+            <Text style={styles.taskText}>Tipo de Nails: {item.nailType}</Text>
+            <TouchableOpacity onPress={() => deleteTask(item.id)} style={styles.deleteButton}>
+              <Text style={styles.deleteButtonText}>Eliminar</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  listContainer: {
+    marginTop: 20,
+  },
   taskItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+    padding: 15,
+    borderRadius: 5,
     marginBottom: 10,
   },
+  taskText: {
+    fontSize: 16,
+  },
   deleteButton: {
-    color: 'red',
-    marginLeft: 10,
+    marginTop: 10,
+    backgroundColor: 'red',
+    padding: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  deleteButtonText: {
+    color: '#fff',
   },
 });
 
