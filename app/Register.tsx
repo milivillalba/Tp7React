@@ -63,7 +63,7 @@ const Register = () => {
     return (
       <>
        {/* Define la pantalla del Stack con opciones de título */}
-         <Stack.Screen options={{title:'Regi'}}/>
+         <Stack.Screen options={{title:'Inicia Sesion'}}/>
 
         <View style={styles.container}>
           <Text style={styles.title}>Inicia Sesión💗</Text>

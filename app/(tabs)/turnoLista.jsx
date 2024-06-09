@@ -13,6 +13,7 @@ const TaskList = ({ tasks, deleteTask }) => {
           <View key={item.id} style={styles.taskItem}>
             <Text style={styles.taskText}>Nombre: {item.name}</Text>
             <Text style={styles.taskText}>Tipo de Nails: {item.nailType}</Text>
+            <Text style={styles.taskText}>Fechaa del Turno: {item.date}</Text>
             <TouchableOpacity onPress={() => deleteTask(item.id)} style={styles.deleteButton}>
               <Text style={styles.deleteButtonText}>Eliminar</Text>
             </TouchableOpacity>
@@ -27,15 +28,17 @@ const TaskList = ({ tasks, deleteTask }) => {
 const styles = StyleSheet.create({
   listContainer: {
     marginTop: 20,
+    
   },
   taskItem: {
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#e9b3ba',
     padding: 15,
     borderRadius: 5,
     marginBottom: 10,
   },
   taskText: {
-    fontSize: 16,
+    fontSize: 20,
+    color:'#000'
   },
   deleteButton: {
     marginTop: 10,
